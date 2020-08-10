@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "es2019",
+        "lib": ["es2019", "dom"],
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "strict": true,
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "jsx": "react"
+    },
+    "exclude": [
+      "node_modules"
+    ],
+    "include": [
+        "./src/**/*.ts", 
+        "./src/declarations.d.ts"
+    ]
+}
