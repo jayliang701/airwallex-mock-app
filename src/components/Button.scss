@@ -1,0 +1,21 @@
+@import '@styles/vars.scss';
+
+.btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    @extend .flex-center;
+    color: $black-color;
+}
+
+.btn-default {
+    @extend .btn;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.btn-icon {
+    background: url(../../static/imgs/yes.png) no-repeat center center;
+    background-size: contain;
+}
