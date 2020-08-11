@@ -14,7 +14,7 @@
 
 .btn-default {
     @extend .btn;
-    border: 1px solid #999;
+    border: 1px solid $default-border-color;
     background: #fff;
 }
 
