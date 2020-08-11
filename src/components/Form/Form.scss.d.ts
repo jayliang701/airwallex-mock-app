@@ -12,7 +12,9 @@ interface CssExports {
   'flexRight': string;
   'flexSpaceBetween': string;
   'form': string;
+  'form-cell': string;
   'form-control': string;
+  'form-row': string;
   'formCell': string;
   'formControl': string;
   'formRow': string;

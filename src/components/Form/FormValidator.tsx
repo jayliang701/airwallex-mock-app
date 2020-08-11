@@ -3,6 +3,7 @@
 */
 import { observable, action } from 'mobx';
 import * as DefaultValidationRules from './DefaultValidationRules';
+import FormStore from './FormStore';
 
 export type ValidationRule = {
     regex?:RegExp;
@@ -19,13 +20,13 @@ export default class FormValidator {
 
     @observable results:any = {};
 
-    constructor(definedRules) {
+    constructor(definedRules:any) {
         definedRules = definedRules || {};
         this.rules = {...definedRules};
     }
 
     @action
-    public check(name:string, value:any):Promise<boolean> {
+    public check(name:string, value:any, values:any):Promise<boolean> {
         return new Promise((resolve) => {
             const checker:ValidationRule = this.rules[name] as ValidationRule;
             if (!checker) return resolve(true);
@@ -40,16 +41,19 @@ export default class FormValidator {
             }
 
             if (checker.rule) {
+                //use default rules
                 let checkFunc = DefaultValidationRules[checker.rule];
                 let isValid = checkFunc(value);
                 this.afterCheck(name, value, isValid);
                 return resolve(isValid);
             } else if (checker.regex) {
+                //use custom regex
                 let isValid = checker.regex.test(value);
                 this.afterCheck(name, value, isValid);
                 return resolve(isValid);
             } else if (checker.check) {
-                checker.check(value).then(isValid => {
+                //use custom Promise based function            
+                checker.check(value, values).then((isValid:boolean) => {
                     this.afterCheck(name, value, isValid);
                     resolve(isValid);
                 }).catch(err => {
@@ -62,19 +66,21 @@ export default class FormValidator {
     @action
     public checkAll(values:any):Promise<boolean> {
         return new Promise(resolve => {
+
             let tasks:Array<Promise<boolean>> = [];
             for (let field in this.rules) {
-                console.log(field, values[field]);
-                tasks.push(this.check(field, values[field]));
+                tasks.push(this.check(field, values[field], values));
             }
             //check all fields
             let hasError:boolean = false;
             Promise.all(
-                tasks.map(p => p.catch(() => {
+                tasks.map(p => p.then((isValid:boolean) => {
+                    if (!isValid) hasError = true;
+                }).catch(() => {
                     hasError = true;
                 }))
             ).then(() => {
-                resolve(hasError);
+                resolve(hasError ? false : true);
             });
         });
     }
@@ -82,7 +88,6 @@ export default class FormValidator {
     private afterCheck(name:string, value:any, isValid:boolean, message?:string):void {
         const checker:ValidationRule = this.rules[name] as ValidationRule;
         const err:string | null = !isValid ? (message || (checker.message || 'invalid input')) : null;
-
         this.results[name] = {
             isValid,
             err,

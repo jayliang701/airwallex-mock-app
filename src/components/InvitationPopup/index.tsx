@@ -16,9 +16,10 @@ import styles from './index.scss';
 
 export type InvitationPopupProps = {
     onSubmit?:Function;
+    loading?:boolean;
 } & PopupProps;
 
-const InvitationPopup: React.StatelessComponent<InvitationPopupProps> = ({ hidden, onSubmit, onClose }: InvitationPopupProps) => {
+const InvitationPopup: React.StatelessComponent<InvitationPopupProps> = ({ loading, hidden, onSubmit, onClose }: InvitationPopupProps) => {
     return (
         <Popup hidden={hidden}
             title={'Request an invite'}
@@ -37,7 +38,15 @@ const InvitationPopup: React.StatelessComponent<InvitationPopupProps> = ({ hidde
                         required:true, 
                         message:'Invalid email address', 
                         requiredMessage:'Please input your email address' 
-                    }
+                    },
+                    confirmEmail: {
+                        check: (value:any, values:any):Promise<boolean> => {
+                            return new Promise(resolve => {
+                                resolve(value === values.email);
+                            });
+                        },
+                        message:'Confirm email is not match.', 
+                    },
                 }}
                 onSubmit={ ({ fullName, email }) => {
                     if (onSubmit) {
@@ -56,7 +65,7 @@ const InvitationPopup: React.StatelessComponent<InvitationPopupProps> = ({ hidde
                     <Input name="confirmEmail" placeholder="Confirm Email" />
                 </FormRow>
                 <FormRow style={{ marginTop: 48 }}>
-                    <Button type={ButtonType.Primary}>Send</Button>
+                    <Button loading={loading} type={ButtonType.Primary}>Send</Button>
                 </FormRow>
             </Form>
         </Popup>

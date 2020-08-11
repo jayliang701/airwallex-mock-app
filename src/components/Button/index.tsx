@@ -19,6 +19,7 @@ export type ButtonProps = {
     className?: string;
     type?: ButtonType;
     onClick?: Function;
+    loading?: boolean;
 }
 
 export default class Button extends React.Component<ButtonProps & FormSubmitTriggerProps> implements IFormSubmitTrigger {
@@ -30,10 +31,16 @@ export default class Button extends React.Component<ButtonProps & FormSubmitTrig
         }
     }
 
-    public render():React.ReactNode {
-        const { children, type, onSubmit, onClick, className } = this.props;
+    private renderLoading():React.ReactNode {
         return (
-            <div className={classNames(StyleTypes[type || ButtonType.Default], className)}
+            <div>Processing...</div>
+        );
+    }
+
+    public render():React.ReactNode {
+        const { children, type, onSubmit, onClick, className, loading } = this.props;
+        return (
+            <div className={classNames(StyleTypes[type || ButtonType.Default], loading ? styles.btnDisabled : null, className)}
                 onClick={ () => {
                     if (onSubmit) {
                         this.triggerSubmit();
@@ -43,7 +50,11 @@ export default class Button extends React.Component<ButtonProps & FormSubmitTrig
                         }
                     }
                 } }>
-                {children}
+                { 
+                    loading ? 
+                    this.renderLoading() :
+                    children
+                }
             </div>
         );
     }
