@@ -1,0 +1,26 @@
+@import "@styles/vars.scss";
+
+.btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 23px;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    cursor: pointer;
+}
+
+.btn-default {
+    @extend .btn;
+    border: 1px solid #999;
+    background: #fff;
+}
+
+.btn-primary {
+    @extend .btn;
+    border-color: $primary-border-color;
+    background: $primary-color;
+    color: #fff;
+}

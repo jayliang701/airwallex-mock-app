@@ -10,17 +10,18 @@ const path = require('path');
 const { res, src, dist } = require('./consts');
 
 module.exports = {
-    entry: [ path.resolve(src, 'index.js') ],
+    entry: [path.resolve(src, 'index.js')],
     output: {
         path: dist,
         filename: '[name].[hash].js',
     },
     resolve: {
         alias: {
-            '@components': path.resolve(src, 'components'),
+            // '@components': path.resolve(src, 'components'),
             '@styles': path.resolve(src, 'styles'),
             '@static': res,
         },
+        extensions: ['.tsx', '.ts', '.js', '.jsx'],
     },
     module: {
         rules: [
@@ -32,10 +33,16 @@ module.exports = {
                 }
             },
             {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+            {
                 test: /\.(sa|sc|c)ss$/,
                 exclude: /node_modules/,
                 use: [
                     'style-loader',
+                    { loader: "css-modules-typescript-loader"},
                     {
                         loader: 'css-loader',
                         options: {
@@ -46,11 +53,20 @@ module.exports = {
                             importLoaders: 2,
                         }
                     },
+                    // {
+                    //     loader: 'typings-for-css-modules-loader',
+                    //     options: {
+                    //         localIdentName: '[local]-[hash:base64:5]',
+                    //         modules: true,
+                    //         camelCase: true,
+                    //         namedExport: true
+                    //     }
+                    // },
                     {
                         loader: 'postcss-loader',
                         options: {
                             plugins: (loader) => [
-                                require('autoprefixer')() 
+                                require('autoprefixer')()
                             ]
                         }
                     },
