@@ -10,6 +10,7 @@ interface CssExports {
   'flexRight': string;
   'flexSpaceBetween': string;
   'header': string;
+  'logo': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

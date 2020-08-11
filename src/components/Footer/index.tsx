@@ -12,7 +12,10 @@ const Footer: React.StatelessComponent<FooterProps> = ({
     
     return (
         <div className={styles.footer}>
-            Footer
+            <div className={styles.copyright}>
+                <div>Made with <span className={styles.love}>❤</span> by Jay Liang</div>
+                <div>© 2020 Broccoli & Co. All rights reserved.</div>
+            </div>
         </div>
     );
 }

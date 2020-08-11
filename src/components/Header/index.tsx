@@ -12,7 +12,9 @@ const Header: React.StatelessComponent<HeaderProps> = ({
     
     return (
         <div className={styles.header}>
-            Header
+            <div className={styles.logo}>
+                Broccoli & Co.
+            </div>
         </div>
     );
 }

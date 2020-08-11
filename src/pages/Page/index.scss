@@ -13,7 +13,8 @@
 }
 
 .content {
-    flex:1;
+    height: calc(100vh - #{$header-height} - #{$footer-height});
+    width: 100%;
     position: relative;
 }
 

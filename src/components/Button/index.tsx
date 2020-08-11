@@ -16,6 +16,7 @@ const StyleTypes = {
 }
 
 export type ButtonProps = {
+    className?: string;
     type?: ButtonType;
     onClick?: Function;
 }
@@ -30,9 +31,9 @@ export default class Button extends React.Component<ButtonProps & FormSubmitTrig
     }
 
     public render():React.ReactNode {
-        const { children, type, onSubmit, onClick } = this.props;
+        const { children, type, onSubmit, onClick, className } = this.props;
         return (
-            <div className={classNames(StyleTypes[type || ButtonType.Default])}
+            <div className={classNames(StyleTypes[type || ButtonType.Default], className)}
                 onClick={ () => {
                     if (onSubmit) {
                         this.triggerSubmit();

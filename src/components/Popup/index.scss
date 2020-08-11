@@ -15,7 +15,7 @@
     z-index: 100000;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.05);
+    background: rgba(0,0,0,0.10);
 }
 
 .popup-wrapper {
@@ -44,4 +44,39 @@
 
 .popup-modal-wrapper {
     padding: 24px 24px;
+}
+
+.popup-modal {
+    .close-btn {
+        position: absolute;
+        right: 10px;
+        top: 8px;
+        width: 24px;
+        height: 24px;
+        background: url(../../../static/imgs/close.png) center center no-repeat;
+        background-size: cover;
+        cursor: pointer;
+    }
+}
+
+.popup-title {
+    margin-top: 42px;
+    margin-bottom: 24px;
+    font-size: 18px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 18px;
+    color: $light-black-color;
+    text-align: center;
+}
+
+.popup-title::after {
+    display: block;
+    content: '  ';
+    margin: 0 auto;
+    margin-top: 12px;
+    margin-bottom: 36px;
+    width: 50px;
+    height: 2px;
+    background: $extra-light-black-color;
 }

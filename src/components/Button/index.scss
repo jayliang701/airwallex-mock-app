@@ -18,9 +18,17 @@
     background: #fff;
 }
 
+.btn-default:hover {
+    background: #eee;
+}
+
 .btn-primary {
     @extend .btn;
     border-color: $primary-border-color;
     background: $primary-color;
     color: #fff;
+}
+
+.btn-primary:hover {
+    background: $primary-border-color;
 }

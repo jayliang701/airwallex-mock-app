@@ -2,6 +2,20 @@
 
 .footer {
     width: 100vw;
-    height: 120px;
+    height: $footer-height;
     position: relative;
+    border-top: 1px solid #ccc;
+    @extend .flex-center;
+}
+
+.copyright {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 24px;
+    color: $light-black-color;
+
+    .love {
+        color: red;
+    }
 }

@@ -10,15 +10,21 @@ import Popup, { PopupProps } from '../../components/Popup';
 import Input from '../../components/Input';
 import Button, { ButtonType } from '../../components/Button';
 
+import RequsetInviteForm from "../../data/RequsetInviteForm";
+
+import styles from './index.scss';
+
 export type InvitationPopupProps = {
     onSubmit?:Function;
-    onClose?:Function;
 } & PopupProps;
 
-const InvitationPopup: React.StatelessComponent<any> = ({ hidden, onSubmit, onClose }) => {
+const InvitationPopup: React.StatelessComponent<InvitationPopupProps> = ({ hidden, onSubmit, onClose }: InvitationPopupProps) => {
     return (
         <Popup hidden={hidden}
-            width={400}>
+            title={'Request an invite'}
+            width={430}
+            height={480}
+            onClose={ onClose }>
             <Form 
                 defaultValues={{
                     fullName: '',
@@ -33,8 +39,11 @@ const InvitationPopup: React.StatelessComponent<any> = ({ hidden, onSubmit, onCl
                         requiredMessage:'Please input your email address' 
                     }
                 }}
-                onSubmit={ (values:any) => {
-                    onSubmit(values);
+                onSubmit={ ({ fullName, email }) => {
+                    if (onSubmit) {
+                        const form = new RequsetInviteForm(fullName, email);
+                        onSubmit(form);
+                    }
                 } }
             > 
                 <FormRow>
@@ -46,7 +55,7 @@ const InvitationPopup: React.StatelessComponent<any> = ({ hidden, onSubmit, onCl
                 <FormRow>
                     <Input name="confirmEmail" placeholder="Confirm Email" />
                 </FormRow>
-                <FormRow>
+                <FormRow style={{ marginTop: 48 }}>
                     <Button type={ButtonType.Primary}>Send</Button>
                 </FormRow>
             </Form>
