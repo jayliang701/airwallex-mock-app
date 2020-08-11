@@ -1,0 +1,18 @@
+@import '@styles/vars.scss';
+
+.header {
+    width: 100vw;
+    height: $header-height;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+    @extend .flex-left;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: 600;
+    color: $primary-color;
+    height: 100%;
+    @extend .flex-center;
+    padding-left: 10%;
+}
