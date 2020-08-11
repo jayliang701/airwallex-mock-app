@@ -8,16 +8,29 @@ import InvitationPopup from '../../components/InvitationPopup';
 import RequestCompletePopup from '../../components/RequestCompletePopup';
 import Button from '../../components/Button';
 
-import RequsetInviteForm from "../../data/RequsetInviteForm";
+import RequsetInviteForm from '../../data/RequsetInviteForm';
+import { requestInvite } from '../../service';
 
 import styles from './index.scss';
 
 const state = observable({
+    sending: false,
     isShowInvitationPopup: false,
     isShowRequestCompletePopup: false,
+    isRequested: false,
 
     requestInvite: async (form: RequsetInviteForm) => {
-        console.log(form);
+        state.sending = true;
+        try {
+            await requestInvite(form);
+            state.sending = false;
+            state.isRequested = true;
+        } catch (err) {
+            console.error(err);
+            state.sending = false;
+            alert('Networks error. Please retry later.');
+            return;
+        }
         state.isShowInvitationPopup = false;
         state.isShowRequestCompletePopup = true;
     }
@@ -35,7 +48,11 @@ const Home: React.StatelessComponent<any> = ({}: any) => {
                 <div className={styles.subSlogan}>
                     <div>Be the first to know when we launch.</div>
                 </div>
-                <Button className={styles.inviteBtn} onClick={ () => state.isShowInvitationPopup = true }>Request an invite</Button>
+                {
+                    state.isRequested ?
+                    <div className={styles.requestedTip}>Thank you!</div> :
+                    <Button className={styles.inviteBtn} onClick={ () => state.isShowInvitationPopup = true }>Request an invite</Button>
+                }
             </div>
 
             <RequestCompletePopup 
@@ -43,6 +60,7 @@ const Home: React.StatelessComponent<any> = ({}: any) => {
                 onClose={ () => state.isShowRequestCompletePopup = false } 
             />
             <InvitationPopup 
+                loading={state.sending}
                 hidden={!state.isShowInvitationPopup} 
                 onClose={ () => state.isShowInvitationPopup = false } 
                 onSubmit={ (form: RequsetInviteForm) => state.requestInvite(form) } 

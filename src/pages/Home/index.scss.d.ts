@@ -13,6 +13,8 @@ interface CssExports {
   'invite-btn': string;
   'inviteBtn': string;
   'landing': string;
+  'requested-tip': string;
+  'requestedTip': string;
   'slogan': string;
   'sub-slogan': string;
   'subSlogan': string;

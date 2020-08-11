@@ -3,8 +3,10 @@
 interface CssExports {
   'btn': string;
   'btn-default': string;
+  'btn-disabled': string;
   'btn-primary': string;
   'btnDefault': string;
+  'btnDisabled': string;
   'btnPrimary': string;
   'flex-center': string;
   'flex-left': string;

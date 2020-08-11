@@ -22,13 +22,26 @@
     background: #eee;
 }
 
+.btn-default.btn-disabled {
+    border-color: $light-border-color;
+    color: #999;
+}
+
 .btn-primary {
     @extend .btn;
-    border-color: $primary-border-color;
     background: $primary-color;
     color: #fff;
 }
 
 .btn-primary:hover {
-    background: $primary-border-color;
+    background: $primary-hover-color;
+}
+
+.btn-primary.btn-disabled {
+    background-color: $primary-disabled-color;
+}
+
+.btn-disabled {
+    pointer-events: none;
+    cursor: default;
 }

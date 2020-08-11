@@ -2,7 +2,7 @@
  * FormStore stores all the form values.
 */
 
-import { observable, action } from 'mobx';
+import { observable, action, toJS } from 'mobx';
 
 import Form from "./Form";
 
@@ -24,7 +24,7 @@ export default class FormStore {
     }
 
     public getValues():any {
-        return { ...this.values };
+        return { ...toJS(this.values) };
     }
 
 }

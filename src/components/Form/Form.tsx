@@ -100,18 +100,18 @@ class ControlWrapper extends React.Component<ControlWrapperProps> {
             className: classNames(styles.formControl, targetProps.className),
             value: values[name],
             message: err ? <div className={styles.controlError}>{err}</div> : null,
-            onChange: (val) => {
+            onChange: (val:any) => {
                 store.setValue(name, val);
                 if (err) {
                     //If current state is error, check validation while user input
                     //for better user experience
-                    validator.check(name, val);
+                    validator.check(name, val, store.getValues());
                 }
             },
-            onFinish: (val) => {
+            onFinish: (val:any) => {
                 //check validation when focus out or finish
                 store.setValue(name, val);
-                validator.check(name, val);
+                validator.check(name, val, store.getValues());
             } });
     }
 }
@@ -139,28 +139,7 @@ export default class Form extends React.Component<FormProps, FormState> {
     constructor(props) {
         super(props);
         this.store = new FormStore(props.defaultValues || {});
-        this.validator = new FormValidator(props.validation || []);
-    }
-
-    public processFieldChange(name:string, value:any):Promise<void> {
-        return new Promise((resolve, reject) => {
-            this.checkField(name, value).then(() => {
-                resolve();
-            }).catch((err:any) => {
-                reject(err);
-            });
-            this.props.onFieldChange && this.props.onFieldChange(name, value);
-        });
-    }
-
-    private checkField(name:string, value:any):Promise<void> {
-        return new Promise((resolve, reject) => {
-            this.validator.check(name, value).then(() => {
-                resolve();
-            }).catch((err:any) => {
-                reject(err);
-            });
-        });
+        this.validator = new FormValidator(props.validation || {});
     }
 
     UNSAFE_componentWillReceiveProps(newProps) {
@@ -183,13 +162,18 @@ export default class Form extends React.Component<FormProps, FormState> {
     }
 
     public doSumbit():void {
-        this.validator.checkAll(this.store.getValues());
+        const values = this.store.getValues();
+        this.validator.checkAll(values).then((isAllValid) => {
+            if (isAllValid && this.props.onSubmit) {
+                this.props.onSubmit(values);
+            }
+        });
     }
 
     public render():React.ReactNode {
         const { children, className } = this.props;
 
-        let newChildren = wrapFormControls(children, this);
+        const newChildren = wrapFormControls(children, this);
         return (
             <div className={classNames(styles.form, className)}>
                 {newChildren}
