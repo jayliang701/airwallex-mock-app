@@ -4,12 +4,12 @@ import ReactDom from 'react-dom';
 import '@styles/normalize.css';
 import '@styles/main.scss';
 
-import Test from './pages/Test';
+import Home from './pages/Home';
 
 const renderApp = () => {
     ReactDom.render(
         <div>
-            <Test />
+            <Home />
         </div>,
         document.getElementById('root')
     );
