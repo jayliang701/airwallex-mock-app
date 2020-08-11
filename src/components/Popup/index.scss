@@ -1,0 +1,47 @@
+@import "@styles/vars.scss";
+
+.popup {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.popup-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100000;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.2);
+}
+
+.popup-wrapper {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 200000;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    display: block;
+    overflow-y: auto;
+}
+
+.popup-modal {
+    margin: 0 auto;
+    margin-top: 14%;
+    position: relative;
+    min-width: 400px;
+    min-height: 300px;
+    background: #fff;
+    border: 1px solid $default-border-color;
+}
+
+.popup-modal-wrapper {
+    padding: 24px 24px;
+}
