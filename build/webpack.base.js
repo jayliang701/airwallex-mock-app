@@ -17,11 +17,11 @@ module.exports = {
     },
     resolve: {
         alias: {
-            '@components': path.resolve(src, 'components'),
+            // '@components': path.resolve(src, 'components'),
             '@styles': path.resolve(src, 'styles'),
             '@static': res,
         },
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.tsx', '.ts', '.js', '.jsx'],
     },
     module: {
         rules: [
