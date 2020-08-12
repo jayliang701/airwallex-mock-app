@@ -67,7 +67,7 @@ const InvitationPopup: React.StatelessComponent<InvitationPopupProps> = ({ loadi
                     <Input name="confirmEmail" placeholder="Confirm Email" />
                 </FormRow>
                 <FormRow style={{ marginTop: 32 }}>
-                    <Button loading={loading} loadingText="Sending, please wait..." type={ButtonType.Primary}>Send</Button>
+                    <Button loading={loading} loadingText="Sending, please wait..." submit={true} type={ButtonType.Primary}>Send</Button>
                 </FormRow>
             </Form>
             { err && !loading ? <div className={styles.errorMsg}>{err}</div> : null }

@@ -1,6 +1,7 @@
 
 
 export type FormSubmitTriggerProps = {
+    submit?:boolean;
     onSubmit?: Function;
 }
 

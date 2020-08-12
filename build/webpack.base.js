@@ -28,7 +28,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
+                exclude: [ /node_modules/, /__tests__/ ],
                 use: {
                     loader: 'babel-loader'
                 }
@@ -36,11 +36,11 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
-                exclude: /node_modules/,
+                exclude: [ /node_modules/, /__tests__/ ],
             },
             {
                 test: /\.(sa|sc|c)ss$/,
-                exclude: /node_modules/,
+                exclude: [ /node_modules/, /__tests__/ ],
                 use: [
                     'style-loader',
                     { loader: "css-modules-typescript-loader"},
@@ -81,7 +81,7 @@ module.exports = {
             },
             {
                 test: /\.(woff|woff2|eot|ttf|svg|png|jpg|jpeg|gif|bmp|mp4|avi|mp3|wav|ogg|swf)(\?.*)?$/,
-                exclude: /node_modules/,
+                exclude: [ /node_modules/, /__tests__/ ],
                 use: [
                     {
                         loader: 'file-loader',

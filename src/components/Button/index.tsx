@@ -40,11 +40,11 @@ export default class Button extends React.Component<ButtonProps & FormSubmitTrig
     }
 
     public render():React.ReactNode {
-        const { children, type, onSubmit, onClick, className, loading } = this.props;
+        const { children, type, submit, onClick, className, loading } = this.props;
         return (
             <div className={classNames(StyleTypes[type || ButtonType.Default], loading ? styles.btnDisabled : null, className)}
                 onClick={ () => {
-                    if (onSubmit) {
+                    if (submit) {
                         this.triggerSubmit();
                     } else {
                         if (onClick) {
