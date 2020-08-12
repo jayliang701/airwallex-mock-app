@@ -22,7 +22,8 @@ export type InvitationPopupProps = {
 
 const InvitationPopup: React.StatelessComponent<InvitationPopupProps> = ({ loading, hidden, err, onSubmit, onClose }: InvitationPopupProps) => {
     return (
-        <Popup hidden={hidden}
+        <Popup className={styles.invitationPopup}
+            hidden={hidden}
             title={'Request an invite'}
             width={430}
             height={480}
