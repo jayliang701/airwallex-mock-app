@@ -36,8 +36,8 @@ export default class FormValidator {
                 if (checker.required) {
                     this.afterCheck(name, value, false, checker.requiredMessage || 'required');
                     resolve(false);
+                    return;
                 }
-                return;
             }
 
             if (checker.rule) {
@@ -59,6 +59,8 @@ export default class FormValidator {
                 }).catch(err => {
                     resolve(false);
                 });
+            } else {
+                resolve(true);
             }
         });
     }

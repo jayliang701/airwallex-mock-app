@@ -67,7 +67,7 @@ const wrapFormControls = (children:any, form:Form):Array<React.ReactNode> => {
             newChildren[i] = newChild;
         } 
         
-        if (isFormSubmitTrigger(child)) {
+        if (isFormSubmitTrigger(child) && props.submit) {
             newChild = React.cloneElement(child, { key:i, ...props, onSubmit:() => {
                 form.doSumbit();
             } }, props.children);
@@ -85,7 +85,7 @@ export type ControlWrapperProps = {
 }
 
 @observer
-class ControlWrapper extends React.Component<ControlWrapperProps> {
+export class ControlWrapper extends React.Component<ControlWrapperProps> {
     public render():React.ReactNode {
         const { target, store, validator } = this.props;
         const targetProps = target.props || {};

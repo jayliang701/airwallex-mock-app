@@ -38,8 +38,8 @@ class Input extends React.Component<InputProps> implements IFormControl {
                     onBlur={ () => {
                         onFinish && onFinish(value);
                     } }
-                    onChange={ (evt:React.FormEvent<HTMLInputElement>) => {
-                        const val:string = evt.currentTarget.value;
+                    onChange={ (evt:React.ChangeEvent<HTMLInputElement>) => {
+                        const val:string = evt.target.value;
                         onChange && onChange(val);
                     } } />
                 {message}
