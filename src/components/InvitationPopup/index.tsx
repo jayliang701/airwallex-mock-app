@@ -17,9 +17,10 @@ import styles from './index.scss';
 export type InvitationPopupProps = {
     onSubmit?:Function;
     loading?:boolean;
+    err?:string;
 } & PopupProps;
 
-const InvitationPopup: React.StatelessComponent<InvitationPopupProps> = ({ loading, hidden, onSubmit, onClose }: InvitationPopupProps) => {
+const InvitationPopup: React.StatelessComponent<InvitationPopupProps> = ({ loading, hidden, err, onSubmit, onClose }: InvitationPopupProps) => {
     return (
         <Popup hidden={hidden}
             title={'Request an invite'}
@@ -64,10 +65,11 @@ const InvitationPopup: React.StatelessComponent<InvitationPopupProps> = ({ loadi
                 <FormRow>
                     <Input name="confirmEmail" placeholder="Confirm Email" />
                 </FormRow>
-                <FormRow style={{ marginTop: 48 }}>
-                    <Button loading={loading} type={ButtonType.Primary}>Send</Button>
+                <FormRow style={{ marginTop: 32 }}>
+                    <Button loading={loading} loadingText="Sending, please wait..." type={ButtonType.Primary}>Send</Button>
                 </FormRow>
             </Form>
+            { err && !loading ? <div className={styles.errorMsg}>{err}</div> : null }
         </Popup>
     );
 }
