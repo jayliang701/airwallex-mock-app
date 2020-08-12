@@ -18,6 +18,7 @@ const state = observable({
     isShowInvitationPopup: false,
     isShowRequestCompletePopup: false,
     isRequested: false,
+    requestErr: '',
 
     requestInvite: async (form: RequsetInviteForm) => {
         state.sending = true;
@@ -28,7 +29,7 @@ const state = observable({
         } catch (err) {
             console.error(err);
             state.sending = false;
-            alert('Networks error. Please retry later.');
+            state.requestErr = 'Network error. Please retry later.';
             return;
         }
         state.isShowInvitationPopup = false;
@@ -61,6 +62,7 @@ const Home: React.StatelessComponent<any> = ({}: any) => {
             />
             <InvitationPopup 
                 loading={state.sending}
+                err={state.requestErr}
                 hidden={!state.isShowInvitationPopup} 
                 onClose={ () => state.isShowInvitationPopup = false } 
                 onSubmit={ (form: RequsetInviteForm) => state.requestInvite(form) } 

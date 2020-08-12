@@ -20,6 +20,7 @@ export type ButtonProps = {
     type?: ButtonType;
     onClick?: Function;
     loading?: boolean;
+    loadingText?: string;
 }
 
 export default class Button extends React.Component<ButtonProps & FormSubmitTriggerProps> implements IFormSubmitTrigger {
@@ -32,8 +33,9 @@ export default class Button extends React.Component<ButtonProps & FormSubmitTrig
     }
 
     private renderLoading():React.ReactNode {
+        const { loadingText } = this.props;
         return (
-            <div>Processing...</div>
+            <div>{loadingText || 'Processing...'}</div>
         );
     }
 
