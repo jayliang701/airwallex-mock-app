@@ -8,9 +8,7 @@ import Home from './pages/Home';
 
 const renderApp = () => {
     ReactDom.render(
-        <div>
-            <Home />
-        </div>,
+        <Home />,
         document.getElementById('root')
     );
 }
