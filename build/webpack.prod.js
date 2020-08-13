@@ -3,15 +3,18 @@
  */
 const baseConfig = require('./webpack.base.js');
 const { merge } = require('webpack-merge');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const path = require('path');
-
-const { root, src, dist } = require('./consts');
+// repleace style-loader
+baseConfig.module.rules[0].use[0] = MiniCssExtractPlugin.loader;
 
 module.exports = merge(baseConfig, {
     mode: "production",
     devtool:"cheap-module-source-map",   // for prod
     plugins: [
-        //Todo: minify resources
+        new MiniCssExtractPlugin({
+            filename: '[name].[contenthash].css',
+            chunkFilename: '[id].[contenthash].css',
+        }),
     ]
 });
