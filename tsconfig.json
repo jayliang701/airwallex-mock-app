@@ -1,8 +1,9 @@
 {
     "compilerOptions": {
-        "target": "es2019",
-        "lib": ["es2019", "dom"],
-        "module": "commonjs",
+        "target": "esnext",
+        "moduleResolution": "node",
+        "lib": ["esnext", "dom"],
+        "module": "esnext",
         "esModuleInterop": true,
         "strict": true,
         "sourceMap": true,
