@@ -6,7 +6,7 @@ import Footer from '../../components/Footer';
 import styles from './index.scss';
 
 export type PageProps = {
-    onContentRender?: Function | React.ReactNode | string;
+    onContentRender?: Function | React.ReactNode | string | null;
 }
 
 const Page: React.StatelessComponent<PageProps> = ({ 
@@ -26,18 +26,6 @@ const Page: React.StatelessComponent<PageProps> = ({
             <Footer />
         </div>
     );
-}
-
-//HOC
-export const pageContent = (Component) => {
-    const WrapperComponent:React.StatelessComponent<any> = (props:any) => {
-        return (
-            <Page>
-                <Component />
-            </Page>
-        );
-    };
-    return WrapperComponent;
 }
 
 export default Page;

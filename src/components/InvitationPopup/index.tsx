@@ -33,11 +33,17 @@ const InvitationPopup: React.StatelessComponent<InvitationPopupProps> = ({ loadi
                     confirmEmail: '',
                 }}
                 validation={{
+                    fullName: { 
+                        rule: ValidationType.PersonName, 
+                        required:true, 
+                        message:'Full name needs to be at least 3 characters long.', 
+                        requiredMessage:'Please input your full name.' 
+                    },
                     email: { 
                         rule: ValidationType.Email, 
                         required:true, 
                         message:'Invalid email address', 
-                        requiredMessage:'Please input your email address' 
+                        requiredMessage:'Please input your email address.' 
                     },
                     confirmEmail: {
                         check: (value:any, values:any):Promise<boolean> => {

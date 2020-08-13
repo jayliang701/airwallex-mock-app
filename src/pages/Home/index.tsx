@@ -3,7 +3,7 @@ import React from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 
-import { pageContent } from '../Page';
+import { pageContent } from '../pageHoc';
 import InvitationPopup from '../../components/InvitationPopup';
 import RequestCompletePopup from '../../components/RequestCompletePopup';
 import Button from '../../components/Button';
