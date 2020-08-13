@@ -25,8 +25,6 @@ const InvitationPopup: React.StatelessComponent<InvitationPopupProps> = ({ loadi
         <Popup className={styles.invitationPopup}
             hidden={hidden}
             title={'Request an invite'}
-            width={430}
-            height={480}
             onClose={ onClose }>
             <Form 
                 defaultValues={{

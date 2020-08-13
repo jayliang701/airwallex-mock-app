@@ -1,13 +1,12 @@
 @import '@styles/vars.scss';
 
-.Invitation-popup {
+.invitation-popup {
     position: relative;
+    width: 430px;
+    height: 480px;
 }
 
 .error-msg {
-    // position: absolute;
-    // bottom: 0;
-    // left: 0;
     width: 100%;
     color: $danger-color;
     font-size: 13px;
@@ -16,4 +15,12 @@
     text-align: center;
     height: 0;
     margin-top: 20px;
+}
+
+@media screen and (max-height: 520px) {
+    .invitation-popup {
+        margin-top: 0 !important;
+        height: 100vh;
+        min-height: 100vh;
+    }
 }
