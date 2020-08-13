@@ -46,3 +46,26 @@
     font-weight: 400;
     color: $light-black-color;
 }
+
+@media screen and (max-width: 414px) {
+    .slogan {
+        font-size: 34px;
+        line-height: 42px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .slogan {
+        font-size: 30px;
+        line-height: 36px;
+    }
+
+    .sub-slogan {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .invite-btn {
+        margin-bottom: 0;
+    }
+}
