@@ -35,7 +35,7 @@
 
 .popup-modal {
     margin: 0 auto;
-    margin-top: 20%;
+    margin-top: 20vh;
     position: relative;
     min-width: 300px;
     min-height: 200px;
@@ -86,12 +86,18 @@
 
 @media screen and (max-height: 812px) {
     .popup-modal {
-        margin-top: 10%;
+        margin-top: 10vh;
     }
 }
 
 @media screen and (min-height: 812px) {
     .popup-modal {
-        margin-top: 16%;
+        margin-top: 16vh;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .popup-modal {
+        min-width: 100vw;
     }
 }
