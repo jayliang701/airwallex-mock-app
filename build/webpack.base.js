@@ -27,18 +27,6 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
-                exclude: [ /node_modules/, /__tests__/ ],
-                use: {
-                    loader: 'babel-loader'
-                }
-            },
-            {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: [ /node_modules/, /__tests__/ ],
-            },
-            {
                 test: /\.(sa|sc|c)ss$/,
                 exclude: [ /node_modules/, /__tests__/ ],
                 use: [
@@ -54,15 +42,6 @@ module.exports = {
                             importLoaders: 2,
                         }
                     },
-                    // {
-                    //     loader: 'typings-for-css-modules-loader',
-                    //     options: {
-                    //         localIdentName: '[local]-[hash:base64:5]',
-                    //         modules: true,
-                    //         camelCase: true,
-                    //         namedExport: true
-                    //     }
-                    // },
                     {
                         loader: 'postcss-loader',
                         options: {
@@ -71,12 +50,7 @@ module.exports = {
                             ]
                         }
                     },
-                    {
-                        loader: 'sass-loader',
-                        // options: {
-                        //     prependData: `$cdn: '${process.env.PUBLIC_PATH || '/'}';`
-                        // }
-                    }
+                    'sass-loader',
                 ]
             },
             {
@@ -93,6 +67,18 @@ module.exports = {
                         }
                     },
                 ]
+            },
+            {
+                test: /\.(js|jsx)$/,
+                exclude: [ /node_modules/, /__tests__/ ],
+                use: {
+                    loader: 'babel-loader'
+                }
+            },
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: [ /node_modules/, /__tests__/ ],
             }
         ]
     },
